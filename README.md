@@ -1,6 +1,6 @@
 # Spring-Security-Demo-with-JWT
 
-This project is a demo for securing a web resources with Json Web token (JWT). 
+This project is a demo for securing a web resource with Json Web token (JWT). 
 JWT are favoured for securing RESTful resouces due to their statelessnes. A JWT is a set of claims (JSON property–value pairs) that together make up a JSON object. It consists of three parts viz:
 Header, Payload and Signature.
 
@@ -12,7 +12,7 @@ This application has been built with the latest version of springBoot (Version 3
 4. H2 in memory databse for database administation
 5. Lombok for reducing boiler plates codes
 
-To use this application, a user needs to be registered ising the user registration endpoint, then sign in to recieve a jwt token when is then placed in the authorization header when atempting to access web resources
+To use this application, a user needs to be registered using the user registration endpoint, then sign in to recieve a jwt token which is then placed in the authorization header when atempting to access web resources
 
 ##  Spring Oauth2 resource server
 The  Spring Oauth2 resource server dependency is part of the spring implementation of the Oauth2 specification others are Spring Oauth2 Authorization Server and Outh2 Resource client
@@ -29,9 +29,9 @@ b.) Asymmetric keys: Different keys are used for encryption (private key) and de
 the JWT can be verified.
 
 ## 
-In this application, I havw created a customized authentication(Log in) mechanism which uses a username and pasword to authenticate and returns a jwt token.
-Since i have not enabled basic authentication, the basic authentication filter is disabled which means i will have to created an authentication object explicitly.
-Authentication is handled by the Authentication Manager which uses a provider manger to authenticate by calling the authentication method. The authentocation aanager, Authentication provider were exposed as a bean so that it can be in the conext.
+In this application, I have created a customized authentication(Log in) mechanism which uses a username and pasword to authenticate and returns a jwt token.
+Since I have not enabled basic authentication, the basic authentication filter is disabled which means i will have to created an authentication object explicitly.
+Authentication is handled by the Authentication Manager which uses a provider manger to authenticate by calling the authentication method. The authentocation manager, Authentication provider were exposed as a bean so that it can be in the context.
 
 ## What is not included
 Both unit and integration tests are not inculded in this repo at thus moment.
