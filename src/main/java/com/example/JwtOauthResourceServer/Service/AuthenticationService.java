@@ -24,9 +24,9 @@ public class AuthenticationService {
 
         SecurityContextHolder.getContext().setAuthentication(authenticationObject);
 
-        String s = tokenService.generateToken(authenticationObject);
+        String token = tokenService.generateToken(authenticationObject);
 
-        return new AuthenticationResponse(s);
+        return new AuthenticationResponse(token);
 
     }
 }

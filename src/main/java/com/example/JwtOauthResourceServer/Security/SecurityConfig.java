@@ -65,6 +65,8 @@ public class SecurityConfig {
                     auth.requestMatchers("/favicon.svg").permitAll();
                     auth.requestMatchers("/css/*").permitAll();
                     auth.requestMatchers("/error").permitAll();
+                    auth.requestMatchers("/home").hasAuthority("SCOPE_" +
+                            "ADMIN");
                     auth.anyRequest().authenticated();})
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()));
@@ -72,14 +74,8 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
-    /*
-    i need to expose a decoder
-    also expose an encoder
-    create a key pair generator class
 
-     */
-    @Bean
-    public KeyPair keyPair() throws NoSuchAlgorithmException {
+    private static KeyPair keyPair() throws NoSuchAlgorithmException {
 
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(2048);
