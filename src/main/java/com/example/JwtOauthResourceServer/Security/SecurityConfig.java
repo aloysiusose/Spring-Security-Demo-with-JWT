@@ -31,6 +31,7 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.UUID;
 
 @EnableWebSecurity
 @Configuration
@@ -65,8 +66,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/favicon.svg").permitAll();
                     auth.requestMatchers("/css/*").permitAll();
                     auth.requestMatchers("/error").permitAll();
-                    auth.requestMatchers("/home").hasAuthority("SCOPE_" +
-                            "ADMIN");
+                    auth.requestMatchers("/home").hasAuthority("SCOPE_ADMIN");
                     auth.anyRequest().authenticated();})
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()));
@@ -74,8 +74,8 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
-
-    private static KeyPair keyPair() throws NoSuchAlgorithmException {
+    @Bean
+    public KeyPair keyPair() throws NoSuchAlgorithmException {
 
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(2048);
@@ -85,13 +85,14 @@ public class SecurityConfig {
     @Bean
    public JwtDecoder jwtDecoder() throws NoSuchAlgorithmException {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair().getPublic();
-        return NimbusJwtDecoder.withPublicKey(publicKey).build();
+       return NimbusJwtDecoder.withPublicKey(publicKey).build();
 
     }
     @Bean
     public JwtEncoder jwtEncoder() throws NoSuchAlgorithmException {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair().getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair().getPrivate();
+        //RSAKey key = new RSAKey.Builder(publicKey).privateKey(privateKey).keyID(UUID.randomUUID().toString()).build();
 
         JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
