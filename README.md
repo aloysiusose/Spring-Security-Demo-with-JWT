@@ -1,6 +1,7 @@
 # Spring-Security-Demo-with-JWT
 
-This project is a demo for securing a web resource with Json Web token (JWT). 
+This project is a demo for securing a web resource with Json Web token (JWT) with test coverage.
+
 JWT are favoured for securing RESTful resouces due to their statelessnes. A JWT is a set of claims (JSON property–value pairs) that together make up a JSON object. It consists of three parts viz:
 Header, Payload and Signature.
 
