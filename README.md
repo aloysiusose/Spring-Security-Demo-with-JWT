@@ -34,7 +34,5 @@ In this application, I have created a customized authentication(Log in) mechanis
 Since I have not enabled basic authentication, the basic authentication filter is disabled which means i will have to created an authentication object explicitly.
 Authentication is handled by the Authentication Manager which uses a provider manger to authenticate by calling the authentication method. The authentocation manager, Authentication provider were exposed as a bean so that it can be in the context.
 
-## What is not included
-Both unit and integration tests are not inculded in this repo at thus moment.
 
 Finally, this is an exploratory project and part of my journey of learning what behind the scene in spring security.
